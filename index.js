@@ -5,6 +5,7 @@ const ejsLayouts = require("express-ejs-layouts");
 const reminderController = require("./controller/reminder_controller");
 const authController = require("./controller/auth_controller");
 const port = process.env.PORT || 3001;
+//Jennifer adding comment for commit
 
 app.use(express.static(path.join(__dirname, "public")));
 
