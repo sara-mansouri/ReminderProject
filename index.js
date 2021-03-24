@@ -4,7 +4,9 @@ const path = require("path");
 const ejsLayouts = require("express-ejs-layouts");
 const reminderController = require("./controller/reminder_controller");
 const authController = require("./controller/auth_controller");
-//Jennifer adding comment for commit
+
+//process.env.PORT is needed for Heroku setup
+const port = process.env.PORT || 3030;
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -38,6 +40,8 @@ app.get("/login", authController.login);
 app.post("/register", authController.registerSubmit);
 app.post("/login", authController.loginSubmit);
 
+//original line app.listen(3001, function () {
+//change line below from "3001"--> "port" variable
 app.listen(3001, function () {
   console.log(
     "Server running. Visit: localhost:3001/reminders in your browser 🚀"
