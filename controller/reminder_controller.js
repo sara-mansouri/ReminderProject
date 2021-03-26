@@ -1,8 +1,6 @@
 let database = require("../database");
 var fs = require('fs')
 
-
-
 let remindersController = {
   list: (req, res) => {
     res.render("reminder/index", { reminders: database.cindy.reminders });
@@ -25,15 +23,10 @@ let remindersController = {
   },
 
   create: (req, res) => {
-
     let reminder = {
       id: database.cindy.reminders.length + 1,
       title: req.body.title,
       description: req.body.description,
-      date: req.body.date,
-      location: req.body.location,
-      tags: req.body.tags.split(","),
-      tasks: req.body.tasks.split(","),
       completed: false,
     };
     database.cindy.reminders.push(reminder);
@@ -68,6 +61,5 @@ let remindersController = {
 
 
 };
-
 
 module.exports = remindersController;
