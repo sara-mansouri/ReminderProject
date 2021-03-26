@@ -1,4 +1,5 @@
 let database = require("../database");
+var fs = require('fs')
 
 let remindersController = {
   list: (req, res) => {
@@ -41,12 +42,24 @@ let remindersController = {
   },
 
   update: (req, res) => {
-    // implement this code
+    let reminderToFind = req.params.id;
+    let searchResult = database.cindy.reminders.find(function (reminder) {
+      return reminder.id == reminderToFind;
+    });
+    res.render("reminder/edit/", { reminderItem: searchResult });
   },
 
   delete: (req, res) => {
-    // Implement this code
+    let reminderToFind = req.params.id;
+    let searchResult = database.cindy.reminders.find(function (reminder) {
+      return reminder.id == reminderToFind;
+    });
+    // res.render("reminder/delete/", { reminderItem: searchResult });
+    delete reminderItem[searchResult];
+    //delete database.Database.cindy.reminders.[id];
   },
+
+
 };
 
 module.exports = remindersController;
