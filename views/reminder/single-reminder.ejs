@@ -6,8 +6,24 @@
         <h3><strong><%= reminderItem.title %>: </strong></h3>
         <h4><%= reminderItem.description %></h4>
         <h4>location:<%= reminderItem.location %></h4>
-        <h4>Tags:<%= reminderItem.tags %></h4>
-        <h4>Tasks:<%= reminderItem.tasks %></h4>
+
+        
+        <% if (reminderItem.tags) { %>
+        <h4>Tags:</h4><div class="tags-list">
+        <% reminderItem.tags.forEach(tag => {%>
+          <span class="tag"><%= tag %> </span>  
+        <%  }) %>
+        </div>
+        <%  } %>
+        
+        <% if (reminderItem.tasks) { %>
+        <h4>Tasks:</h4><div class="tasks-list">
+        <% reminderItem.tasks.forEach(task => {%>
+          <span class="task"> <%= task %>  </span>
+        <%  }) %>
+        </div>
+        <%  } %>
+
         <h4>Completed:
           <% if (reminderItem.completed == true) { %>
             <span class="label label-success">True</span>
