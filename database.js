@@ -26,7 +26,7 @@ let Database = {
     alex: {
         reminders: [
             {
-            id: 3, 
+            id: 100, 
             title: "alex Rading", 
             description: "abcabc",
             location: "vancouver", 
@@ -36,7 +36,7 @@ let Database = {
             tasks:[ "reading"]         
             },
             {
-            id: 4, 
+            id: 101, 
             title: "alex Node", 
             description: "abcabc", 
             location: "vancouver", 

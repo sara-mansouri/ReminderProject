@@ -6,26 +6,24 @@
         <h3><strong><%= reminderItem.title %>: </strong></h3>
         <h4><%= reminderItem.description %></h4>
         <h4>location:<%= reminderItem.location %></h4>
-
-        
+        <h4>Reminder Time:</h4><div class="reminder-time"><%= reminderItem.date %></div>
+             
         <% if (reminderItem.tags) { %>
-        <h4>Tags:</h4><div class="tags-list">
-        <% reminderItem.tags.forEach(tag => {%>
-          <span class="tag"><%= tag %> </span>  
-        <%  }) %>
-        </div>
+          <h4>Tags:</h4><div class="tags-list">
+          <% reminderItem.tags.forEach(tag => {%>
+              <span class="tag"><%= tag %> </span>  
+            <%  }) %>
+          </div>
         <%  } %>
-        
+          
         <% if (reminderItem.tasks) { %>
-        <h4>Tasks:</h4><div class="tasks-list">
-        <% reminderItem.tasks.forEach(task => {%>
-<div class="task-checkbox">
-          <input type="checkbox" id="<%= task %>" name="<%= task %>" value="<%= task %>">
-          <label for="<%= task %>"> <%= task %> </label><br>
-</div>
-<!-- 
-          <span class="task"> <%= task %>  </span> -->
-        <%  }) %>
+            <h4>Tasks:</h4><div class="tasks-list">
+            <% reminderItem.tasks.forEach(task => {%>
+              <div class="task-checkbox task">
+                <input type="checkbox" id="<%= task %>" name="<%= task %>" value="<%= task %>">
+                <label for="<%= task %>"> <%= task %> </label><br>
+              </div>
+            <%  }) %>
         </div>
         <%  } %>
 
