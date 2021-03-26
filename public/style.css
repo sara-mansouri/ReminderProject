@@ -149,3 +149,8 @@ footer.footer {
 .task{    background: cadetblue;
   color: white;
 }
+.task-checkbox {
+  border: 1px solid gray;
+  border-radius: 7px;
+  padding: 5px 10px;
+}

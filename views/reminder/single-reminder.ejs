@@ -19,7 +19,12 @@
         <% if (reminderItem.tasks) { %>
         <h4>Tasks:</h4><div class="tasks-list">
         <% reminderItem.tasks.forEach(task => {%>
-          <span class="task"> <%= task %>  </span>
+<div class="task-checkbox">
+          <input type="checkbox" id="<%= task %>" name="<%= task %>" value="<%= task %>">
+          <label for="<%= task %>"> <%= task %> </label><br>
+</div>
+<!-- 
+          <span class="task"> <%= task %>  </span> -->
         <%  }) %>
         </div>
         <%  } %>
