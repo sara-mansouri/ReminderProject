@@ -154,3 +154,12 @@ footer.footer {
   border-radius: 7px;
   padding: 5px 10px;
 }
+.tags-list.small-tags {
+  float: right;
+}
+.tags-list.small-tags  span{
+  font-size: 16px;
+}
+.status span{
+display: table;
+}

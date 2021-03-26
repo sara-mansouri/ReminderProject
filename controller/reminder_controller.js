@@ -32,7 +32,7 @@ let remindersController = {
       date: req.body.date,
       location: req.body.location,
       tags: req.body.tags.split(","),
-      tasks: req.body.tasks.split(","),
+      tasks: req.body.tasks.split("\n"),
       completed: false,
     };
     database.cindy.reminders.push(reminder);
