@@ -5,6 +5,9 @@
       <li class="list-group-item">
         <h3><strong><%= reminderItem.title %>: </strong></h3>
         <h4><%= reminderItem.description %></h4>
+        <h4>location:<%= reminderItem.location %></h4>
+        <h4>Tags:<%= reminderItem.tags %></h4>
+        <h4>Tasks:<%= reminderItem.tasks %></h4>
         <h4>Completed:
           <% if (reminderItem.completed == true) { %>
             <span class="label label-success">True</span>
