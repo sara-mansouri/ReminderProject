@@ -9,6 +9,22 @@
       <label for="description">Description</label>
       <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Description" name="description"><%= reminderItem.description %></textarea>
     </div>
+    <div class="form-group">
+      <label for="location">Location</label>
+      <input type="text" name="location" class="form-control" id="locationInput" value="<%= reminderItem.location %>">
+    </div>
+    <div class="form-group">
+      <label for="location">Date</label>
+      <input type="datetime-local" name="date" class="form-control" id="dateInput" value="<%= reminderItem.date %>">
+    </div>
+    <div class="form-group">
+      <label for="tags">Tags(comma separated)</label>
+      <textarea class="form-control" id="tagsInput" rows="3" placeholder="tag1,tag2" name="tags"><%= reminderItem.tags %></textarea>
+    </div>
+    <div class="form-group">
+      <label for="tasks">Tasks (*one task per line)</label>
+      <textarea class="form-control" id="tasksInput" rows="3" placeholder="task1" name="tasks"><%= reminderItem.tasks %></textarea>
+    </div>
 
     <div class="form-group">
       <label for="completed">Completed</label>
