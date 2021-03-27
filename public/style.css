@@ -134,3 +134,32 @@ footer.footer {
   margin-bottom: 10px;
   margin-top: 10px;
 }
+
+.tag, .task {
+  background: aquamarine;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  font-size: 22px;
+}
+.tags-list, .tasks-list {
+  margin: 15px;
+}
+
+.task{    background: cadetblue;
+  color: white;
+}
+.task-checkbox {
+  border: 1px solid gray;
+  border-radius: 7px;
+  padding: 5px 10px;
+}
+.tags-list.small-tags {
+  float: right;
+}
+.tags-list.small-tags  span{
+  font-size: 16px;
+}
+.status span{
+display: table;
+}
