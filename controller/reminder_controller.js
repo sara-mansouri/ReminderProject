@@ -58,11 +58,22 @@ let remindersController = {
   },
 
   create: (req, res) => {
+    console.log(req.body)
+
+
+    const taskLists = req.body.tasks.split('\r\n')
+
+
     let reminder = {
       id: database.cindy.reminders.length + 1,
       title: req.body.title,
       description: req.body.description,
+      tasks: taskLists,
       completed: false,
+      date: req.body.date,
+      location: req.body.location,
+      tags: [req.body.tags]
+
     };
     database.cindy.reminders.push(reminder);
     res.redirect("/reminders");
