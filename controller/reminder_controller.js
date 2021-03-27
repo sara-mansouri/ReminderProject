@@ -5,8 +5,9 @@ require('dotenv').config()
 let remindersController = {
   list: (req, res) => {
     const client_id = process.env.CLIENT_ID;
-    fetch("https://api.unsplash.com/search/photos?client_id=${client_id}query=cats").then(photos => photos.json().then(parsedPhotos => {
-      console.log(parsedPhotos)
+    fetch("https://api.unsplash.com/photos/?client_id=hLoLdbTS_-5c1SRfP7p9T6Y79jbgXmrqjFxcr2WF9zk").then(photos => photos.json().then(parsedPhotos => {
+      console.log(parsedPhotos[1].urls.regular)
+      var picture = parsedPhotos[1].urls.regular
     }));
     res.render("reminder/index", { reminders: database.cindy.reminders });
   },
@@ -14,6 +15,10 @@ let remindersController = {
   new: (req, res) => {
     res.render("reminder/create");
   },
+
+  // const getRandomNum = () => {
+  //   return Math.floor(Math.random() * 99);
+  // };
 
   listOne: (req, res) => {
     let reminderToFind = req.params.id;
@@ -25,6 +30,8 @@ let remindersController = {
     } else {
       res.render("reminder/index", { reminders: database.cindy.reminders });
     }
+    // parsedPhotos.urls.raw[1]
+    // console.log(parsedPhotos.urls.raw[1])
   },
 
   create: (req, res) => {
@@ -71,8 +78,6 @@ let remindersController = {
   //   delete reminderItem[searchResult];
   //   //delete database.Database.cindy.reminders.[id];
   // },
-
-
 };
 
 module.exports = remindersController;

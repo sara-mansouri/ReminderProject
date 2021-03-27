@@ -1,49 +1,61 @@
 <div class="container">
   <h1 class="page-header">Reminders</h1>
 
-    <ul class="list-group">
-      <li class="list-group-item">
-        <h3><strong><%= reminderItem.title %>: </strong></h3>
-        <h4><%= reminderItem.description %></h4>
-        <h4>location:<%= reminderItem.location %></h4>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h3><strong>
+          <%= reminderItem.title %>:
+        </strong></h3>
+      <h4>
+        <%= reminderItem.description %>
+      </h4>
+      <h4>location:<%= reminderItem.location %>
+      </h4>
 
-        
-        <% if (reminderItem.tags) { %>
-        <h4>Tags:</h4><div class="tags-list">
-        <% reminderItem.tags.forEach(tag => {%>
-          <span class="tag"><%= tag %> </span>  
-        <%  }) %>
+
+      <% if (reminderItem.tags) { %>
+        <h4>Tags:</h4>
+        <div class="tags-list">
+          <% reminderItem.tags.forEach(tag=> {%>
+            <span class="tag">
+              <%= tag %>
+            </span>
+            <% }) %>
         </div>
-        <%  } %>
-        
-        <% if (reminderItem.tasks) { %>
-        <h4>Tasks:</h4><div class="tasks-list">
-        <% reminderItem.tasks.forEach(task => {%>
-<div class="task-checkbox">
-          <input type="checkbox" id="<%= task %>" name="<%= task %>" value="<%= task %>">
-          <label for="<%= task %>"> <%= task %> </label><br>
-</div>
-<!-- 
+        <% } %>
+
+          <% if (reminderItem.tasks) { %>
+            <h4>Tasks:</h4>
+            <div class="tasks-list">
+              <% reminderItem.tasks.forEach(task=> {%>
+                <div class="task-checkbox">
+                  <input type="checkbox" id="<%= task %>" name="<%= task %>" value="<%= task %>">
+                  <label for="<%= task %>">
+                    <%= task %>
+                  </label><br>
+                </div>
+                <!-- 
           <span class="task"> <%= task %>  </span> -->
-        <%  }) %>
-        </div>
-        <%  } %>
+                <% }) %>
+            </div>
+            <% } %>
 
-        <h4>Completed:
-          <% if (reminderItem.completed == true) { %>
-            <span class="label label-success">True</span>
-          <% } else if (reminderItem.completed == false) { %>
-            <span class="label label-danger">False</span>
-          <% } %>
-        </h4>
+              <h4>Completed:
+                <% if (reminderItem.completed==true) { %>
+                  <span class="label label-success">True</span>
+                  <% } else if (reminderItem.completed==false) { %>
+                    <span class="label label-danger">False</span>
+                    <% } %>
+              </h4>
 
-        <a class="btn btn-warning" href=<%= "/reminder/" + reminderItem.id + "/edit" %>>Edit</a>
+              <a class="btn btn-warning" href=<%="/reminder/" + reminderItem.id + "/edit" %>>Edit</a>
 
-        <form class="deleteForm "method="POST" action=<%= "/reminder/delete/" + reminderItem.id %>>
-          <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
+              <form class="deleteForm " method="POST" action=<%="/reminder/delete/" + reminderItem.id %>>
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
 
-      </li>
-    </ul>
+    </li>
+  </ul>
 
+</div>
 </div>
