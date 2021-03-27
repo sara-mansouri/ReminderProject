@@ -163,3 +163,8 @@ footer.footer {
 .status span{
 display: table;
 }
+
+img {
+  max-width: 150px;
+  float: right;
+}

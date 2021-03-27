@@ -69,7 +69,7 @@ let remindersController = {
   },
 
   edit: (req, res) => {
-    console.log(req.params.id);
+    // console.log(req.params.id);
     let reminderToFind = req.params.id;
     let searchResult = database.cindy.reminders.find(function (reminder) {
       return reminder.id == reminderToFind;
