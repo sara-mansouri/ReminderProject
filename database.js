@@ -3,8 +3,8 @@ let Database = {
         reminders: [
             {
                 id: 1,
-                title: "Reading",
-                description: "Read book 1",
+                title: "Personal",
+                description: "for myself improvement",
                 location: "vancouver",
                 completed: false,
                 date: new Date(),
@@ -14,19 +14,29 @@ let Database = {
             {
                 id: 2,
                 title: "Work ",
-                description: "abcabc",
+                description: "skills",
                 location: "vancouver",
                 completed: false,
                 date: new Date(),
                 tags: ["work", "skills"],
                 tasks: ["Learn Node"]
+            },
+            {
+                id: 3,
+                title: "Hobby ",
+                description: "Whatever I enjoy working on in my spare time",
+                location: "vancouver",
+                completed: false,
+                date: new Date(),
+                tags: ["painting ", "crafts"],
+                tasks: ["shopping supplies","planning for it"]
             }
         ]
     },
     alex: {
         reminders: [
             {
-                id: 3,
+                id: 4,
                 title: "alex Rading",
                 description: "abcabc",
                 location: "vancouver",
@@ -36,7 +46,7 @@ let Database = {
                 tasks: ["reading"]
             },
             {
-                id: 4,
+                id: 5,
                 title: "alex Node",
                 description: "abcabc",
                 location: "vancouver",
