@@ -1,6 +1,6 @@
 let database = require("../database");
 const fetch = require("node-fetch");
-var fs = require('fs')
+require('dotenv').config()
 
 let remindersController = {
   list: (req, res) => {
