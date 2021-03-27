@@ -4,7 +4,7 @@ let Database = {
             {
                 id: 1,
                 title: "Reading",
-                description: "Read book",
+                description: "Read book 1",
                 location: "vancouver",
                 completed: false,
                 date: new Date(),

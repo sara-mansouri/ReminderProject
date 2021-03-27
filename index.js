@@ -31,7 +31,7 @@ app.post("/reminder/", reminderController.create);
 app.post("/reminder/:id/update", reminderController.update);
 
 // Implement this yourself
-app.post("/reminder/:id/delete", reminderController.delete);
+app.post("/reminder/delete/:id", reminderController.delete);
 
 // Fix this to work with passport! The registration does not need to work, you can use the fake database for this.
 app.get("/register", authController.register);
