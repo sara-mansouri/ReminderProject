@@ -1,6 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const userController = require("../controllers/userController");
+const userController = require("../controller/userController");
 const localLogin = new LocalStrategy(
   {
     usernameField: "email",
@@ -11,8 +11,8 @@ const localLogin = new LocalStrategy(
     return user
       ? done(null, user)
       : done(null, false, {
-          message: "Your login details are not valid. Please try again",
-        });
+        message: "Your login details are not valid. Please try again",
+      });
   }
 );
 

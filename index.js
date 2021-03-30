@@ -5,15 +5,20 @@ const ejsLayouts = require("express-ejs-layouts");
 const reminderController = require("./controller/reminder_controller");
 const authController = require("./controller/auth_controller");
 const port = process.env.PORT || 3001;
+const passport = require("./middleware/passport")
 //Jennifer adding comment for commit
 
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 
 app.use(ejsLayouts);
 
 app.set("view engine", "ejs");
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes start here
 
@@ -37,7 +42,10 @@ app.post("/reminder/delete/:id", reminderController.delete);
 app.get("/register", authController.register);
 app.get("/login", authController.login);
 app.post("/register", authController.registerSubmit);
-app.post("/login", authController.loginSubmit);
+app.post("/login", passport.authenticate('local', {
+  successRedirect: "/reminders",
+  failureRedirect: "/login"
+}, authController.loginSubmit));
 
 app.listen(port, function () {
   console.log(
