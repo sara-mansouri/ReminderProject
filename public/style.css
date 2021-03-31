@@ -168,3 +168,16 @@ img {
   max-width: 150px;
   float: right;
 }
+.logged-in-user {
+  /* float: right; */
+  right: 0px !important;
+  display: flex;
+  /* text-align: right; */
+  position: absolute;
+}
+.logged-in-user a.btn.btn-secondary {
+  text-decoration: underline;
+  background: transparent;
+  color: cadetblue;
+  border: navajowhite;
+}

@@ -2,15 +2,6 @@ let database = require("../database");
 const fetch = require("node-fetch");
 require('dotenv').config()
 
-
-
-
-
-
-
-
-
-
 let remindersController = {
   list: (req, res) => {
     const client_id = process.env.CLIENT_ID;
@@ -73,6 +64,7 @@ let remindersController = {
   },
 
   edit: (req, res) => {
+    console.log(req.body.completed);
     // console.log(req.params.id);
     let reminderToFind = req.params.id;
     let searchResult = database.cindy.reminders.find(function (reminder) {
@@ -83,6 +75,7 @@ let remindersController = {
 
   update: (req, res) => {
   
+      console.log(req.body.completed);
     let objIndex = database.cindy.reminders.findIndex((obj => obj.id == req.params.id));
       database.cindy.reminders[objIndex].title= req.body.title;
       database.cindy.reminders[objIndex].description= req.body.description;
