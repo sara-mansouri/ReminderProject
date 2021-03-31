@@ -13,15 +13,16 @@ require('dotenv').config()
 
 let remindersController = {
   list: (req, res) => {
+    console.log(req.user);
     const client_id = process.env.CLIENT_ID;
     fetch("https://api.unsplash.com/photos/?client_id=hLoLdbTS_-5c1SRfP7p9T6Y79jbgXmrqjFxcr2WF9zk").then(photos => photos.json().then(parsedPhotos => {
       //console.log(parsedPhotos)
-      console.log(parsedPhotos[1].urls.regular)
-      var picture = parsedPhotos[1].urls.regular
+      console.log(parsedPhotos[req.user.id].urls.regular)
+      var picture = parsedPhotos[req.user.id].urls.regular
 
 
     }));
-    res.render("reminder/index", { reminders: database.cindy.reminders });
+    res.render("reminder/index", { reminders: database[req.user.id].reminders });
 
   },
 
@@ -35,7 +36,7 @@ let remindersController = {
 
   listOne: async (req, res) => {
     let reminderToFind = req.params.id;
-    let searchResult = database.cindy.reminders.find(function (reminder) {
+    let searchResult = database[req.user.id].reminders.find(function (reminder) {
       return reminder.id == reminderToFind;
     });
 
@@ -49,23 +50,40 @@ let remindersController = {
     if (searchResult != undefined) {
       res.render("reminder/single-reminder", { reminderItem: searchResult, picture: photo });
     } else {
-      res.render("reminder/index", { reminders: database.cindy.reminders });
+      res.render("reminder/index", { reminders: database[req.user.id].reminders });
     }
 
 
-    // parsedPhotos.urls.raw[1]
-    // console.log(parsedPhotos.urls.raw[1])
+    // parsedPhotos.urls.raw[req.user.id]
+    // console.log(parsedPhotos.urls.raw[req.user.id])  
+  },
+
+  getUserReminder: async (req, res) => {
+    let reminderToFind = req.params.user_id;
+    let searchResult = database[reminderToFind];
+
+    const client_id = process.env.CLIENT_ID;
+    const photos = await fetch("https://api.unsplash.com/photos/?client_id=hLoLdbTS_-5c1SRfP7p9T6Y79jbgXmrqjFxcr2WF9zk")
+
+    const parsedPhotos = await photos.json()
+    const photo = parsedPhotos[req.params.user_id].urls.regular
+
+    if (searchResult != undefined) {
+      res.render("reminder/single-reminder", { reminderItem: searchResult, picture: photo });
+    } else {
+      res.render("reminder/index", { reminders: database[req.user.id].reminders });
+    }
   },
 
   create: (req, res) => {
     console.log(req.body)
-
+    console.log("xx", req.user);
 
     const taskLists = req.body.tasks.split('\r\n')
 
 
     let reminder = {
-      id: database.cindy.reminders.length + 1,
+      id: database[req.user.id].reminders.length + 1,
       title: req.body.title,
       description: req.body.description,
       tasks: taskLists,
@@ -75,13 +93,13 @@ let remindersController = {
       tags: [req.body.tags]
 
     };
-    database.cindy.reminders.push(reminder);
+    database[req.user.id].reminders.push(reminder);
     res.redirect("/reminders");
   },
 
   edit: (req, res) => {
     let reminderToFind = req.params.id;
-    let searchResult = database.cindy.reminders.find(function (reminder) {
+    let searchResult = database[req.user.id].reminders.find(function (reminder) {
       return reminder.id == reminderToFind;
     });
     res.render("reminder/edit", { reminderItem: searchResult });
@@ -91,7 +109,7 @@ let remindersController = {
     let reminderToFind = req.params.id;
     const { title, description, completed } = req.body
 
-    let searchResult = database.cindy.reminders.find(function (reminder) {
+    let searchResult = database[req.user.id].reminders.find(function (reminder) {
       console.log(reminder.id, reminderToFind)
       return reminder.id == reminderToFind;
     });
@@ -102,7 +120,7 @@ let remindersController = {
     searchResult.completed = completed;
 
 
-    database.cindy.reminders[parseInt(reminderToFind) - 1] = searchResult
+    database[req.user.id].reminders[parseInt(reminderToFind) - 1] = searchResult
     const client_id = process.env.CLIENT_ID;
     const photos = await fetch("https://api.unsplash.com/photos/?client_id=hLoLdbTS_-5c1SRfP7p9T6Y79jbgXmrqjFxcr2WF9zk")
 
@@ -115,20 +133,20 @@ let remindersController = {
 
   delete: (req, res) => {
     // Implement this code
-    let objIndex = database.cindy.reminders.findIndex((obj => obj.id == req.params.id));
-    database.cindy.reminders.splice(objIndex, 1);
+    let objIndex = database[req.user.id].reminders.findIndex((obj => obj.id == req.params.id));
+    database[req.user.id].reminders.splice(objIndex, 1);
     res.redirect("/reminders");
   },
 
 
   // delete: (req, res) => {
   //   let reminderToFind = req.params.id;
-  //   let searchResult = database.cindy.reminders.find(function (reminder) {
+  //   let searchResult = database[req.user.id].reminders.find(function (reminder) {
   //     return reminder.id == reminderToFind;
   //   });
   //   // res.render("reminder/delete/", { reminderItem: searchResult });
   //   delete reminderItem[searchResult];
-  //   //delete database.Database.cindy.reminders.[id];
+  //   //delete database.Database[req.user.id].reminders.[id];
   // },
 };
 

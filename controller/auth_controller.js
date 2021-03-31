@@ -12,9 +12,9 @@ let authController = {
 
   loginSubmit: (req, res) => {
     // implement
-    const { email, password } = req.body
-    console.log(email)
-    console.log(database)
+    console.log("REs ----", res);
+    const email = res.email;
+    res.render("auth/reminders");
   },
 
   registerSubmit: (req, res) => {

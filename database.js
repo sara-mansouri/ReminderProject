@@ -1,5 +1,5 @@
 let Database = {
-    cindy: {
+    1: {
         reminders: [
             {
                 id: 1,
@@ -23,7 +23,7 @@ let Database = {
             }
         ]
     },
-    alex: {
+    2: {
         reminders: [
             {
                 id: 3,

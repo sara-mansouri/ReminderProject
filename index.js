@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const expressSession = require('express-session');
 const ejsLayouts = require("express-ejs-layouts");
 const reminderController = require("./controller/reminder_controller");
 const authController = require("./controller/auth_controller");
@@ -17,6 +18,8 @@ app.use(ejsLayouts);
 
 app.set("view engine", "ejs");
 
+app.use(expressSession({ secret: 'anything' }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -30,6 +33,8 @@ app.get("/reminder/:id", reminderController.listOne);
 
 app.get("/reminder/:id/edit", reminderController.edit);
 
+app.get("/userreminder/:user_id", reminderController.getUserReminder);
+
 app.post("/reminder/", reminderController.create);
 
 // Implement this yourself
@@ -42,10 +47,10 @@ app.post("/reminder/delete/:id", reminderController.delete);
 app.get("/register", authController.register);
 app.get("/login", authController.login);
 app.post("/register", authController.registerSubmit);
-app.post("/login", passport.authenticate('local', {
-  successRedirect: "/reminders",
-  failureRedirect: "/login"
-}, authController.loginSubmit));
+app.post("/login", passport.authenticate('local', { failureRedirect: 'login' }),
+  function (req, res) {
+    res.redirect('/reminders');
+  });
 
 app.listen(port, function () {
   console.log(
