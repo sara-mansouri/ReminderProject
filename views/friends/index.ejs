@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Suggested Friends</h1>
+  <% possibleFriends.forEach(friend=> { %>
+    <div>
+      <div>
+        <%= friend.name %> <button id="<%=friend.id%>" class="friend btn btn-primary">Add</button>
+      </div>
+      <div class="small">
+        <%= friend.email %>
+      </div>
+      <% }) %>
+    </div>
+
+
+    <script>
+      let friends = document.querySelectorAll(".friend")
+      friends.forEach(friend => {
+        friend.addEventListener("click", function () {
+          console.log(this)
+          this.innerHTML = "Added"
+          this.classList.add("disabled")
+        })
+      })
+    </script>

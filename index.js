@@ -4,6 +4,7 @@ const path = require("path");
 const expressSession = require('express-session');
 const ejsLayouts = require("express-ejs-layouts");
 const reminderController = require("./controller/reminder_controller");
+const friendController = require("./controller/friendController")
 const authController = require("./controller/auth_controller");
 const port = process.env.PORT || 3001;
 const passport = require("./middleware/passport")
@@ -23,7 +24,14 @@ app.use(expressSession({ secret: 'anything' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function (req, res, next) {
+  res.locals.currentUser = req.user;
+  next()
+})
+
 // Routes start here
+
+app.get("/friends", friendController.fetchAll)
 
 app.get("/reminders", reminderController.list);
 

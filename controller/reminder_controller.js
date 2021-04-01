@@ -22,7 +22,11 @@ let remindersController = {
 
 
     }));
-    res.render("reminder/index", { reminders: database[req.user.id].reminders });
+    res.render("reminder/index", {
+      reminders: database
+
+      //[req.user.id].reminders 
+    });
 
   },
 

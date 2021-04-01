@@ -45,6 +45,20 @@ let Database = {
                 tags: ["work"],
                 tasks: ["Learn Cooking"]
             }]
+    },
+    3: {
+        reminders: [
+            {
+                id: 5,
+                title: "Rading",
+                description: "abc",
+                location: "vancouver",
+                completed: false,
+                date: new Date(),
+                tags: ["family", "hobby"],
+                tasks: ["reading"]
+            },
+        ]
     }
 }
 
